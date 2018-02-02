@@ -11,7 +11,8 @@ const bookSchema = new Schema ({
   onHold: Boolean,
   onLoan: Boolean,
   currentUser: String,
-  dateDue: Date
+  dateDue: Date,
+  imageUrl: String
 })
 
 const Book = mongoose.model('Book', bookSchema);
