@@ -1,9 +1,12 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 
-var users = require('./routes/users');
+const users = require('./routes/users');
+const mongoose = require('mongoose');
+const ENV      = require('./env');
+mongoose.connect(ENV.MONGODB_URI);
 
 var app = express();
 
