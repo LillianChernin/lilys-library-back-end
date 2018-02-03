@@ -7,9 +7,9 @@ const bookSchema = new Schema ({
   genres: Array,
   keywords: Array,
   datePublished: String,
-  format: String,
-  onHold: Boolean,
-  onLoan: Boolean,
+  format: {type: String, default: "book"},
+  onHold: {type: Boolean, default: false},
+  onLoan: {type: Boolean, default: false},
   currentUser: String,
   dateDue: Date,
   imageUrl: String
