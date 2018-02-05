@@ -27,12 +27,13 @@ const bookList = [
     format: "book"
   }
 ]
-
-db.Book.create(bookList, (err, books) => {
-  if (err) {
-    return console.log('ERROR ' + err);
-  }
-  console.log("all books " + books);
-  console.log("created " + books.length + " books");
-  process.exit();
-});
+db.Book.remove({}, (err, books) => {
+  db.Book.create(bookList, (err, books) => {
+    if (err) {
+      return console.log('ERROR ' + err);
+    }
+    console.log("all books " + books);
+    console.log("created " + books.length + " books");
+    process.exit();
+  });
+})
