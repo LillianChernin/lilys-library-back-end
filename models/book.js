@@ -11,6 +11,7 @@ const bookSchema = new Schema ({
   onHold: {type: Boolean, default: false},
   onLoan: {type: Boolean, default: false},
   currentUser: String,
+  holdOwner: String,
   dateDue: {type: Date, default: new Date()},
   imageUrl: String,
   location: String
