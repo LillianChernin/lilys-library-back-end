@@ -12,9 +12,11 @@ const bookSchema = new Schema ({
   onLoan: {type: Boolean, default: false},
   currentUser: String,
   holdOwner: String,
+  holdEndDate: Date,
   dateDue: {type: Date, default: new Date()},
   imageUrl: String,
-  location: String
+  location: String,
+  isbn: String
 })
 
 const Book = mongoose.model('Book', bookSchema);

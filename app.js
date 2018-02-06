@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
 const users = require('./routes/users');
-const books = require('./routes/books')
+const books = require('./routes/books');
 const mongoose = require('mongoose');
 let ENV;
 
@@ -22,8 +22,6 @@ app.use(function(req, res, next) {
 });
 
 mongoose.connect(ENV.MONGODB_URI);
-
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
