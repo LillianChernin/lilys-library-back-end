@@ -19,6 +19,15 @@ const show = (req, res) => {
   });
 }
 
+const showOnLoan = (req, res) => {
+  Book.find({onLoan: true}, (err, books) => {
+    if (err) {
+      res.send(err);
+    }
+    res.json(books);
+  })
+}
+
 const create = (req, res) => {
   let newBook = new Book(req.body);
   newBook.save((err, newBookObject) => {
@@ -115,6 +124,7 @@ const destroy = (req, res) => {
 
 module.exports.index = index;
 module.exports.show = show;
+module.exports.showOnLoan = showOnLoan;
 module.exports.create = create;
 module.exports.updateBookInfo = updateBookInfo;
 module.exports.updateLocation = updateLocation;
