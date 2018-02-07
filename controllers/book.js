@@ -69,6 +69,8 @@ const updateLocation = (req, res) => {
 
 const borrowBook = (req, res) => {
   let newDueDate = new Date(+new Date + 12096e5);
+  console.log(newDueDate);
+  console.log(req.body);
   Book.findById(req.params.book_id, (err, book) => {
     if (err) {
       res.send(err);
