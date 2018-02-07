@@ -57,7 +57,7 @@ const updateLocation = (req, res) => {
     if (err) {
       res.send(err);
     }
-    book.location = req.body;
+    book.location = req.body.newLocation;
     book.save((err, saved) => {
       if (err) {
         res.status(500).send(err);
@@ -76,7 +76,7 @@ const borrowBook = (req, res) => {
       res.send(err);
     }
     book.onLoan = true;
-    book.currentUser = req.body;
+    book.currentUser = req.body.userName;
     book.dateDue = newDueDate;
     book.save((err, saved) => {
       if (err) {
