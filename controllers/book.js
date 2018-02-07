@@ -109,8 +109,8 @@ const returnBook = (req, res) => {
         res.status(500).send(err);
       }
       res.json(saved);
-    })
-  })
+    });
+  });
 }
 
 const destroy = (req, res) => {
@@ -119,7 +119,7 @@ const destroy = (req, res) => {
       res.send(err);
     }
     res.json(book);
-  })
+  });
 }
 
 module.exports.index = index;
