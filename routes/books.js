@@ -5,9 +5,9 @@ const bookController = require('../controllers/book');
 
 router.get('/', bookController.index);
 
-router.get('/:book_id', bookController.show);
-
 router.get('/on-loan', bookController.showOnLoan);
+
+router.get('/:book_id', bookController.show);
 
 router.post('/', bookController.create);
 
