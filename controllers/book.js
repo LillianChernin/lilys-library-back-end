@@ -116,5 +116,5 @@ module.exports.create = create;
 module.exports.updateBookInfo = updateBookInfo;
 module.exports.updateLocation = updateLocation;
 module.exports.borrowBook = borrowBook;
-moduel.exports.returnBook = returnBook;
+module.exports.returnBook = returnBook;
 module.exports.destroy = destroy;
