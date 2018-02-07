@@ -1,42 +1,22 @@
 const express = require('express');
 const router = express.Router();
 const models = require('../models');
+const bookController = require('../controllers/book');
 
-router.get('/', (req, res) => {
-  models.Book.find({}, (err, books) => {
-    if (err) {
-      res.send(err);
-    }
-    res.json(books);
-  })
-})
+router.get('/', bookController.index);
 
-router.get('/:book_id', (req, res) => {
-  models.Book.findById(req.params.book_id, (err, book) => {
-    if (err) {
-      res.send(err);
-    }
-    res.json(book);
-  })
-})
+router.get('/:book_id', bookController.show);
 
-router.post('/', (req, res) => {
-  let newBook = new models.Book(req.body);
-  newBook.save((err, newBookObject) => {
-    if (err) {
-      res.send(err);
-    }
-    res.json(newBookObject);
-  });
-})
+router.post('/', bookController.create);
 
-router.delete('/:book_id', (req, res) => {
-  models.Book.remove({_id: req.params.book_id}, (err, book) => {
-    if (err) {
-      res.send(err);
-    }
-    res.json(book);
-  })
-})
+router.put('/:book_id/update-book-info', bookController.updateBookInfo);
+
+router.put('/:book_id/update-location', bookController.updateLocation);
+
+router.put('/:book_id/borrow-book', bookController.borrowBook);
+
+router.put('/:book_id/return-book', bookController.returnBook);
+
+router.delete('/:book_id', bookController.destroy);
 
 module.exports = router;
