@@ -19,6 +19,10 @@ router.put('/:book_id/borrow-book', bookController.borrowBook);
 
 router.put('/:book_id/return-book', bookController.returnBook);
 
+router.put('/:book_id/place-hold', bookController.placeHold);
+
+router.put('/:book_id/remove-hold', bookController.removeHold);
+
 router.delete('/:book_id', bookController.destroy);
 
 module.exports = router;

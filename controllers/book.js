@@ -78,8 +78,6 @@ const updateLocation = (req, res) => {
 
 const borrowBook = (req, res) => {
   let newDueDate = new Date(+new Date + 12096e5);
-  console.log(newDueDate);
-  console.log(req.body);
   Book.findById(req.params.book_id, (err, book) => {
     if (err) {
       res.send(err);
@@ -113,6 +111,53 @@ const returnBook = (req, res) => {
   });
 }
 
+const placeHold = (req, res) => {
+  Book.findByIdAndUpdate(req.params.book_id,
+    {$push: {holdOwner: req.body.userName}},
+    {safe: true, upsert: true, new: true}, (err, book) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+  })
+  Book.findById(req.params.book_id, (err, book) => {
+    if (err) {
+      res.send(err);
+    }
+    book.onHold = true;
+    book.save((err, saved) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+      res.json(saved);
+    })
+  })
+}
+
+const removeHold = (req, res) => {
+  Book.findByIdAndUpdate(req.params.book_id,
+    {$pull: {holdOwner: req.body.userName}},
+    {safe: true, upsert: true, new: true}, (err, book) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+    if (book.holdOwner.length === 0) {
+      Book.findById(req.params.book_id, (err, book) => {
+        if (err) {
+          res.send(err);
+        }
+        book.onHold = false;
+        book.save((err, saved) => {
+          if (err) {
+            res.status(500).send(err);
+          }
+          res.json(saved);
+        })
+      })
+    }
+  })
+}
+
+
 const destroy = (req, res) => {
   Book.remove({_id: req.params.book_id}, (err, book) => {
     if (err) {
@@ -130,4 +175,6 @@ module.exports.updateBookInfo = updateBookInfo;
 module.exports.updateLocation = updateLocation;
 module.exports.borrowBook = borrowBook;
 module.exports.returnBook = returnBook;
+module.exports.placeHold = placeHold;
+module.exports.removeHold = removeHold;
 module.exports.destroy = destroy;
