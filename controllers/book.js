@@ -29,8 +29,8 @@ const showOnLoan = (req, res) => {
 }
 
 const search = (req, res) => {
-  let searchParameter = req.query.searchParameter;
-  let searchTerm = '/' + req.query.searchTerm + '/i';
+  let searchParameter = req.body.body.searchParameter;
+  let searchTerm = '/' + req.body.body.searchTerm + '/i';
   if (searchParameter === 'Title') {
     Book.find({ title: searchTerm }, (err, books) => {
       if (err) {
