@@ -28,6 +28,15 @@ const showOnLoan = (req, res) => {
   })
 }
 
+const search = (req, res) => {
+  Book.find( { req.body.searchParameter: req.body.searchTerm } ).collation( { locale: 'en', strength: 1 }, (err, books) => {
+    if (err) {
+      res.send(err);
+    }
+    res.json(books);
+  })
+}
+
 const create = (req, res) => {
   let newBook = new Book(req.body);
   newBook.save((err, newBookObject) => {
@@ -170,6 +179,7 @@ const destroy = (req, res) => {
 module.exports.index = index;
 module.exports.show = show;
 module.exports.showOnLoan = showOnLoan;
+module.exports.search = search;
 module.exports.create = create;
 module.exports.updateBookInfo = updateBookInfo;
 module.exports.updateLocation = updateLocation;

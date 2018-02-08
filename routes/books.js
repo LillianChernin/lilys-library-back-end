@@ -7,6 +7,8 @@ router.get('/', bookController.index);
 
 router.get('/on-loan', bookController.showOnLoan);
 
+router.get('/search', bookController.search);
+
 router.get('/:book_id', bookController.show);
 
 router.post('/', bookController.create);
