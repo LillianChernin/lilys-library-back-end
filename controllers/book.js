@@ -29,7 +29,9 @@ const showOnLoan = (req, res) => {
 }
 
 const search = (req, res) => {
-  Book.find({ req.body.searchParameter: /req.body.searchTerm/i }, (err, books) => {
+  let searchParameter = req.body.searchParameter;
+  let searchTerm = req.body.searchTerm;
+  Book.find({ searchParameter: /searchTerm/i }, (err, books) => {
     if (err) {
       res.send(err);
     }
