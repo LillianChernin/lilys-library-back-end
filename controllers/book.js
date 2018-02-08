@@ -29,7 +29,7 @@ const showOnLoan = (req, res) => {
 }
 
 const search = (req, res) => {
-  Book.find( { req.body.searchParameter: req.body.searchTerm } ).collation( { locale: 'en', strength: 1 }, (err, books) => {
+  Book.find({ req.body.searchParameter: /req.body.searchTerm/i }, (err, books) => {
     if (err) {
       res.send(err);
     }
