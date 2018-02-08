@@ -30,13 +30,43 @@ const showOnLoan = (req, res) => {
 
 const search = (req, res) => {
   let searchParameter = req.body.searchParameter;
-  let searchTerm = req.body.searchTerm;
-  Book.find({ searchParameter: /searchTerm/i }, (err, books) => {
-    if (err) {
-      res.send(err);
-    }
-    res.json(books);
-  })
+  let searchTerm = '/' + req.body.searchTerm '/i';
+  if (searchParameter === 'Title') {
+    Book.find({ title: searchTerm }, (err, books) => {
+      if (err) {
+        res.send(err);
+      }
+      res.json(books);
+    })
+  } else if (searchParameter === 'Author') {
+    Book.find({ author: searchTerm }, (err, books) => {
+      if (err) {
+        res.send(err);
+      }
+      res.json(books);
+    })
+  } else if (searchParameter === 'Genre') {
+    Book.find({ genres: searchTerm }, (err, books) => {
+      if (err) {
+        res.send(err);
+      }
+      res.json(books);
+    })
+  } else if (searchParameter === 'Keyword') {
+    Book.find({ keywords: searchTerm }, (err, books) => {
+      if (err) {
+        res.send(err);
+      }
+      res.json(books);
+    })
+  } else if (searchParameter === 'Format') {
+    Book.find({ format: searchTerm }, (err, books) => {
+      if (err) {
+        res.send(err);
+      }
+      res.json(books);
+    })
+  }
 }
 
 const create = (req, res) => {
